@@ -8,6 +8,6 @@ public class MultiTrip implements SearchFlightAvail
     @Override
     public void checkAvailability(String origin, String destination)
     {
-        System.out.println("I am inside round trip");
+        System.out.println("I am inside multi trip");
     }
 }

@@ -2,6 +2,9 @@ package org.singleDesignPattern;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.singleDesignPattern.abstractComponent.SearchFlightAvail;
+import org.singleDesignPattern.pageComponents.MultiTrip;
+import org.singleDesignPattern.pageComponents.RoundTrip;
 import org.singleDesignPattern.pageObject.TravelHomePage;
 import org.testng.annotations.Test;
 
@@ -25,6 +28,15 @@ public class DemoTest
         //so whenever we select 'one-way' then all the methods related to that will go with that, similarly with 'round-trip' and 'multi-trip'
         //example : travelHomePage.getLinksCount("footer"), travelHomepage.getLinksCount("header"), travelHomePage.checkAvailability("multiTrip")
         //we are passing parameters/algorithms in method - runtime instructions
+
+        //the strategy to use either MultiTrip or RoundTrip is set,
+        //so now the next step "travelHomePage.checkAvailability" will go to 'MultiTrip' page
+        //if we set 'RoundTrip' strategy then it will go 'RoundTrip' page
+        travelHomePage.setBookingStrategy(new MultiTrip());
+        travelHomePage.checkAvailability("origin","destination");
+
+        travelHomePage.setBookingStrategy(new RoundTrip());
+        travelHomePage.checkAvailability("origin","destination");
 
 
     }
