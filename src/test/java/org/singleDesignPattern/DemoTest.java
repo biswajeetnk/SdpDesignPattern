@@ -1,5 +1,6 @@
 package org.singleDesignPattern;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.singleDesignPattern.abstractComponent.SearchFlightAvail;
@@ -10,8 +11,10 @@ import org.testng.annotations.Test;
 
 public class DemoTest
 {
+    By sectionElement = By.id("flightSearchContainer");
+
     @Test
-    public void demoTest() throws InterruptedException
+    public void demoTest()
     {
         System.setProperty("webdriver.chrome.driver","C://chromedriver_win32//chromedriver_ver90//chromedriver.exe");
         WebDriver driver = new ChromeDriver();
@@ -35,8 +38,8 @@ public class DemoTest
         travelHomePage.setBookingStrategy(new MultiTrip());
         travelHomePage.checkAvailability("origin","destination");
 
-        travelHomePage.setBookingStrategy(new RoundTrip());
-        travelHomePage.checkAvailability("origin","destination");
+        travelHomePage.setBookingStrategy(new RoundTrip(driver, sectionElement));
+        travelHomePage.checkAvailability("Goa","Adampur");
 
 
     }
